@@ -1,0 +1,36 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies{
+    implementation gradleApi()
+    implementation 'com.android.tools.build:gradle:4.1.0'
+}
+sourceSets {
+    main {
+
+        java {
+            srcDir "src/main/java"
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+repositories{
+    mavenCentral()
+    google()
+    jcenter()
+}
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'com.changxing.gradlePlugin'
+            pom.artifactId = 'davis'
+            pom.version = 1.2
+            repository(url: uri('../LocalRepository'))
+        }
+    }
+}
